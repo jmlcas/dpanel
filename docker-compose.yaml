@@ -1,0 +1,27 @@
+services:
+
+    dpanel:
+        image: dpanel/dpanel:latest
+        container_name: dpanel
+        stdin_open: true
+        tty: true
+        restart: unless-stopped
+        ports:
+            - "8300:80"
+            - "8343:443"
+            - "8380:8080"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./dpanel:/dpanel
+        environment:
+            - APP_NAME=dpanel
+            - INSTALL_USERNAME=admin
+            - INSTALL_PASSWORD=admin
+
+    dpanel-plugin-explorer:
+        image: alpine:latest
+        container_name: dpanel-plugin-explorer
+        restart: unless-stopped
+        privileged: true
+        pid: host
+        command: ["sh", "-c", "tail -f /dev/null"]
