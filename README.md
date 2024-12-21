@@ -1,6 +1,6 @@
 # Dpanel
 
-Ver en "localhost:8380"
+Ver en "http://localhost:8380"
 
 Usuario: admin
 
